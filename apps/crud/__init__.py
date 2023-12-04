@@ -1,1 +1,1 @@
-import apps.crud.models
+import apps.auth.models
