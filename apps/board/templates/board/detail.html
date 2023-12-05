@@ -1,0 +1,17 @@
+{% extends "board/base.html" %}
+{% block content %}
+<div class="container my-3">
+    <!-- 게시글 내용 -->
+    <h2 class="border-bottom py-2">{{ board.title }}</h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{ board.content }}</div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                    {{ board.create_date }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
