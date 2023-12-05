@@ -36,7 +36,7 @@ def signup():
             else:
                 flash('MySQL error: {}'.format(error))
                 return redirect(url_for("auth.signup"))
-        return redirect(url_for("crud.users"))
+        return redirect(url_for("auth.login"))
     return render_template('auth/signup.html',form=form)
 
 @auth.route('/login', methods=('GET', 'POST'))
@@ -53,7 +53,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('crud.users'))
+            return redirect(url_for('board.index'))
         flash(error)
     return render_template('auth/login.html', form=form)
 
@@ -68,4 +68,4 @@ def load_logged_in_user():
 @auth.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for('crud.users'))
+    return redirect(url_for('board.index'))
