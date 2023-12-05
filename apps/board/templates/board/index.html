@@ -16,7 +16,7 @@
         <tr>
             <td>{{ loop.index }}</td>
             <td>
-                <a href="#">{{ board.title }}</a>
+                <a href="{{url_for('board.detail_board', board_id = board.id)}}">{{ board.title }}</a>
             </td>
             <td>{{ board.create_date }}</td>
         </tr>
