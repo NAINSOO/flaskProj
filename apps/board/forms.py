@@ -19,4 +19,4 @@ class BoardForm(FlaskForm):
         ],
     )
 
-    submit = SubmitField("신규 등록")
+    submit = SubmitField("등록")
