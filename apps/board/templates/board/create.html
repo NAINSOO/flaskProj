@@ -3,7 +3,7 @@
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">게시판 글쓰기</h5>
     <form method="post" class="my-3">
-        {% include "auth/form_errors.html" %}
+        {% include "board/form_errors.html" %}
         {{ form.csrf_token }}
         <div class="mb-3">
             <label for="title">제목</label>
