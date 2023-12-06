@@ -1,5 +1,6 @@
 {% extends "board/base.html" %}
 {% block content %}
+
 <div class="container my-3">
     <!-- 게시글 내용 -->
     <h2 class="border-bottom py-2">{{ board.title }}</h2>
@@ -10,6 +11,12 @@
                 <div class="badge bg-light text-dark p-2">
                     {{ board.create_date }}
                 </div>
+            </div>
+            <div class="my-3">
+                {% if g.user == board.user %}
+                <a href="{{ url_for('board.edit_board', board_id=board.id) }}"
+                   class="btn btn-sm btn-outline-secondary">수정</a>
+                {% endif %}
             </div>
         </div>
     </div>
