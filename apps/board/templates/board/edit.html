@@ -1,0 +1,25 @@
+{% extends 'board/base.html' %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">게시판 글수정</h5>
+    <form action="{{url_for('board.edit_board',board_id=board.id)}}" method="post" class="my-3">
+        {% include "board/form_errors.html" %}
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            <label for="title">제목</label>
+            <input type="text" class="form-control" name="title" id="title" value="{{ form.title.data or '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="content">내용</label>
+            <textarea class="form-control" name="content" id="content" rows="10">{{ form.content.data or '' }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">수정하기</button>
+    </form>
+    <div class="my-3">
+        {% if g.user == board.user %}
+        <a href="{{ url_for('board.delete_board', board_id=board.id) }}"
+           class="btn btn-primary">삭제</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
