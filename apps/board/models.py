@@ -9,3 +9,13 @@ class Board(db.Model):
     create_date = db.Column(db.DateTime(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('userinfo.id', ondelete='CASCADE'), nullable=True, server_default='1')
     user = db.relationship('User', backref=db.backref('board_set'))
+
+class Answer(db.Model):
+    __tablename__ = "answer"
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text(), nullable=False)
+    create_date = db.Column(db.DateTime(), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('userinfo.id', ondelete='CASCADE'), nullable=True, server_default='1')
+    user = db.relationship('User', backref=db.backref('answer_set'))
+    board_id = db.Column(db.Integer, db.ForeignKey('board.id', ondelete='CASCADE'), nullable=True, server_default='1')
+    board = db.relationship('Board', backref=db.backref('answer_set'))
