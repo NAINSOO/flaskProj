@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
@@ -23,5 +23,9 @@ def create_app(config_key):
 
     from apps.board import views as board_views
     app.register_blueprint(board_views.board, url_prefix="/board")
+
+    @app.route("/")
+    def main_index():
+        return redirect(url_for('board.index'))
 
     return app
