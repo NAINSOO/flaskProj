@@ -20,3 +20,14 @@ class BoardForm(FlaskForm):
     )
 
     submit = SubmitField("등록")
+
+class AnswerForm(FlaskForm):
+    content = StringField(
+        "내용",
+        validators=[
+            DataRequired(message="내용은 필수입니다."),
+            Length(1, 500, message="500문자 이내로 입력해 주세요."),
+        ],
+    )
+
+    submit = SubmitField("등록")
