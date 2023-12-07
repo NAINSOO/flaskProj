@@ -20,5 +20,34 @@
             </div>
         </div>
     </div>
+    <!-- 답변 목록 -->
+    <h5 class="border-bottom my-3 py-2">{{ board.answer_set|length }}개의 답변이 있습니다.</h5>
+    {% for answer in board.answer_set %}
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                    {{ answer.create_date }}
+                </div>
+            </div>
+            <div class="my-3">
+                {% if g.user == answer.user %}
+                <a href="{{ url_for('board.delete_answer', board_id=board.id,answer_id=answer.id) }}"
+                   class="btn btn-sm btn-outline-secondary">삭제</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- 답변 등록 -->
+    <form action="{{ url_for('board.create_answer', board_id=board.id) }}" method="post" class="my-3">
+        {% include "board/form_errors.html" %}
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            <textarea name="content" id="content" class="form-control" rows="3"></textarea>
+        </div>
+        <input type="submit" value="답변등록" class="btn btn-primary">
+    </form>
 </div>
 {% endblock %}
